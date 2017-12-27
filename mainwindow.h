@@ -20,6 +20,10 @@ private slots:
 
     void on_actionNew_triggered();
 
+    void on_actionEdit_triggered();
+
+    void on_actionEdit_2_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

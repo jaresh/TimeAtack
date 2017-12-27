@@ -5,18 +5,27 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QFile>
+#include <QSqlQuery>
+#include <QVariant>
 #include <iostream>
 
 class DatabaseManager
 {
    public:
-       DatabaseManager(QString& name);
+       DatabaseManager();
        ~DatabaseManager();
+
+       static QSqlDatabase loadDatabase();
        bool isOpen() const;
        QSqlError lastError();
 
+       /* Driver */
+       static void addDriver(QString name);
+       static void deleteDriver(QString name);
+       static QSqlQuery getAllDrivers();
+
    private:
-       QSqlDatabase db;
+       static QSqlDatabase db;
 };
 
 #endif // DATABASEMANAGER_H

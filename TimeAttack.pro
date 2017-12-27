@@ -8,7 +8,7 @@ QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = TimeAtack
+TARGET = TimeAttack
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,14 +26,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    newtournament.cpp \
-    databasemanager.cpp
+    databasemanager.cpp \
+    newdriver.cpp \
+    newrally.cpp \
+    newstage.cpp
 
 HEADERS += \
         mainwindow.h \
-    newtournament.h \
-    databasemanager.h
+    databasemanager.h \
+    newdriver.h \
+    newrally.h \
+    newstage.h
 
 FORMS += \
         mainwindow.ui \
-    newtournament.ui
+    newdriver.ui \
+    newrally.ui \
+    newstage.ui

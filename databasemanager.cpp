@@ -1,9 +1,10 @@
 #include "databasemanager.h"
 
-DatabaseManager::DatabaseManager(QString& name)
+QSqlDatabase DatabaseManager::db = QSqlDatabase::addDatabase("QSQLITE");
+
+DatabaseManager::DatabaseManager()
 {
-   db = QSqlDatabase::addDatabase("QSQLITE");
-   db.setDatabaseName(name.append(".db"));
+   db.setDatabaseName("TimeAttack.db");
 
    if (!db.open())
    {
@@ -23,6 +24,11 @@ DatabaseManager::~DatabaseManager()
     }
 }
 
+QSqlDatabase DatabaseManager::loadDatabase()
+{
+    return db;
+}
+
 bool DatabaseManager::isOpen() const
 {
     return db.isOpen();
@@ -33,4 +39,27 @@ QSqlError DatabaseManager::lastError()
    return db.lastError();
 }
 
+/* DRIVER */
+void DatabaseManager::addDriver(QString name)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO driver(name) VALUES (:name)");
+    query.bindValue(":name", name);
+    query.exec();
+}
 
+void DatabaseManager::deleteDriver(QString name)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM driver WHERE name=:name");
+    query.bindValue(":name", name);
+    query.exec();
+}
+
+QSqlQuery DatabaseManager::getAllDrivers()
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM driver");
+    query.exec();
+    return query;
+}

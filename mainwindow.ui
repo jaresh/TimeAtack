@@ -31,14 +31,28 @@
    </property>
    <widget class="QMenu" name="menuNew_tournament">
     <property name="title">
-     <string>Tournament</string>
+     <string>Rally</string>
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionLoad"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
+   <widget class="QMenu" name="menuTracks">
+    <property name="title">
+     <string>Stages</string>
+    </property>
+    <addaction name="actionEdit"/>
+   </widget>
+   <widget class="QMenu" name="menuDrivers">
+    <property name="title">
+     <string>Drivers</string>
+    </property>
+    <addaction name="actionEdit_2"/>
+   </widget>
    <addaction name="menuNew_tournament"/>
+   <addaction name="menuTracks"/>
+   <addaction name="menuDrivers"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -62,6 +76,16 @@
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionEdit_2">
+   <property name="text">
+    <string>Edit</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="text">
+    <string>Edit</string>
    </property>
   </action>
  </widget>

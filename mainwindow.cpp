@@ -1,6 +1,9 @@
 #include "mainwindow.h"
-#include "newtournament.h"
 #include "ui_mainwindow.h"
+
+#include "newrally.h"
+#include "newstage.h"
+#include "newdriver.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,7 +24,21 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionNew_triggered()
 {
-    NewTournament newtournament;
-    newtournament.setModal(true);
-    newtournament.exec();
+    NewRally newrally;
+    newrally.setModal(true);
+    newrally.exec();
+}
+
+void MainWindow::on_actionEdit_triggered()
+{
+    NewStage newstage;
+    newstage.setModal(true);
+    newstage.exec();
+}
+
+void MainWindow::on_actionEdit_2_triggered()
+{
+    NewDriver newdriver;
+    newdriver.setModal(true);
+    newdriver.exec();
 }
