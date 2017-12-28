@@ -20,15 +20,16 @@ public:
     ~NewRally();
     void updateDriverList();
     void updateStageList();
+    void updateCarList();
     int getStageDistance(QString name);
 
 private slots:
     void on_addStage_clicked();
     void on_removeStage_clicked();
-
     void on_addDriver_clicked();
-
     void on_removeDriver_clicked();
+    bool on_createRally_clicked();
+    void on_close_clicked();
 
 private:
     Ui::NewRally *ui;

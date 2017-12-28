@@ -8,6 +8,7 @@ NewRally::NewRally(QWidget *parent) :
     ui->setupUi(this);
     updateDriverList();
     updateStageList();
+    updateCarList();
 }
 
 NewRally::~NewRally()
@@ -30,6 +31,15 @@ void NewRally::updateStageList()
     while (stages.next())
     {
         ui->stageBox->addItem(stages.value(1).toString());
+    }
+}
+
+void NewRally::updateCarList()
+{
+    QSqlQuery cars = DatabaseManager::getAllCars();
+    while (cars.next())
+    {
+        ui->carBox->addItem(cars.value(1).toString());
     }
 }
 
@@ -83,4 +93,77 @@ void NewRally::on_removeDriver_clicked()
         ui->driverBox->addItem(item->text());
         delete ui->driverList->takeItem(ui->driverList->row(item));
     }
+}
+
+bool NewRally::on_createRally_clicked()
+{
+    QString rallyName = ui->nameInput->text();
+    std::map<int, int> driverID = {};
+    std::map<int, int> stageID = {};
+    int carID = 0;
+    int numberOfStages = ui->stageList->count();
+    int numberOfDrivers = ui->driverList->count();
+    int distanceOverall = ui->label_5->text().toInt();
+
+    QSqlQuery lookForRally = DatabaseManager::getRallyByName(rallyName);
+    bool rallyExists = false;
+
+    while (lookForRally.next())
+    {
+        rallyExists = true;
+    }
+
+    if(!rallyName.compare("") || rallyExists)
+    {
+        QMessageBox::information(0, QString("Information"), QString("Rally name already exists or no name provided."), QMessageBox::Ok);
+        return 0;
+    }
+    else
+    {
+        if(numberOfDrivers == 0 || numberOfStages == 0)
+        {
+            QMessageBox::information(0, QString("Information"), QString("Provide at least one stage and one driver."), QMessageBox::Ok);
+            return 0;
+        }
+        else
+        {
+            for(int i = 0; i < numberOfDrivers; ++i)
+            {
+                QListWidgetItem* item = ui->driverList->item(i);
+                QSqlQuery lookForDriver = DatabaseManager::getDriverByName(item->text());
+                lookForDriver.next();
+
+                driverID[i] = lookForDriver.value(0).toInt();
+            }
+
+            for(int i = 0; i < numberOfStages; ++i)
+            {
+                QListWidgetItem* item = ui->stageList->item(i);
+                QSqlQuery lookForStage = DatabaseManager::getStageByName(item->text());
+                lookForStage.next();
+
+                stageID[i] = lookForStage.value(0).toInt();
+            }
+        }
+
+        QSqlQuery car =DatabaseManager::getCarByName(ui->carBox->currentText());
+        car.next();
+        carID = car.value(0).toInt();
+
+        DatabaseManager::addRally(rallyName,
+                                  carID,
+                                  numberOfStages,
+                                  numberOfDrivers,
+                                  distanceOverall,
+                                  driverID,
+                                  stageID);
+
+        close();
+        return 1;
+    }
+}
+
+void NewRally::on_close_clicked()
+{
+    close();
 }

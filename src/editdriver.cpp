@@ -58,7 +58,7 @@ void EditDriver::on_removeDriver_clicked()
     foreach(QListWidgetItem * item, items)
     {
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Remove driver", "Do you wan to remove " + item->text(), QMessageBox::Yes|QMessageBox::No);
+        reply = QMessageBox::question(this, "Remove driver", "Do you want to remove " + item->text(), QMessageBox::Yes|QMessageBox::No);
 
         if (reply == QMessageBox::Yes)
         {

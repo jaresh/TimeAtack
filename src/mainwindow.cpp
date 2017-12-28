@@ -4,6 +4,7 @@
 #include "newrally.h"
 #include "editstage.h"
 #include "editdriver.h"
+#include "listrally.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -41,4 +42,11 @@ void MainWindow::on_actionEdit_2_triggered()
     EditDriver editdriver;
     editdriver.setModal(true);
     editdriver.exec();
+}
+
+void MainWindow::on_actionLoad_triggered()
+{
+    ListRally listrally;
+    listrally.setModal(true);
+    listrally.exec();
 }

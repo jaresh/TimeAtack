@@ -29,17 +29,20 @@ SOURCES += \
     src/databasemanager.cpp \
     src/newrally.cpp \
     src/editdriver.cpp \
-    src/editstage.cpp
+    src/editstage.cpp \
+    src/listrally.cpp
 
 HEADERS += \
         src/mainwindow.h \
     src/databasemanager.h \
     src/newrally.h \
     src/editdriver.h \
-    src/editstage.h
+    src/editstage.h \
+    src/listrally.h
 
 FORMS += \
         src/mainwindow.ui \
     src/newrally.ui \
     src/editstage.ui \
-    src/editdriver.ui
+    src/editdriver.ui \
+    src/listrally.ui

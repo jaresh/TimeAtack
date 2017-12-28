@@ -32,6 +32,23 @@ class DatabaseManager
        static QSqlQuery getStageByName(QString name);
        static QSqlQuery getAllStages();
 
+       /* Rally */
+       static void addRally(QString name,
+                            int carID,
+                            int numberOfStages,
+                            int numberOfDrivers,
+                            int distance,
+                            std::map<int, int> driverID,
+                            std::map<int, int> stageID);
+       static void deleteRally(QString name);
+       static QSqlQuery getRallyByName(QString name);
+       static QSqlQuery getAllRally();
+
+
+       /* Car */
+       static QSqlQuery getCarByName(QString name);
+       static QSqlQuery getAllCars();
+
    private:
        static QSqlDatabase db;
 };
