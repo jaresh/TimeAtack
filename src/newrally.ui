@@ -16,7 +16,7 @@
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="createRally">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -32,7 +32,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="nameInput">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -55,7 +55,7 @@
     <string>Name</string>
    </property>
   </widget>
-  <widget class="QListWidget" name="listWidget">
+  <widget class="QListWidget" name="stageList">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -68,7 +68,7 @@
     <enum>QAbstractItemView::MultiSelection</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="addStage">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -81,7 +81,7 @@
     <string>Add stage</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="stageBox">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -91,7 +91,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="removeStage">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -104,7 +104,7 @@
     <string>Remove selected</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="addDriver">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -117,7 +117,7 @@
     <string>Add driver</string>
    </property>
   </widget>
-  <widget class="QListWidget" name="listWidget_2">
+  <widget class="QListWidget" name="driverList">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -130,7 +130,7 @@
     <enum>QAbstractItemView::MultiSelection</enum>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_2">
+  <widget class="QComboBox" name="driverBox">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -140,7 +140,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="removeDriver">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -179,11 +179,37 @@
     <string>Stages</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>470</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Overall distance (km):</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>490</y>
+     <width>47</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>createRally</sender>
    <signal>accepted()</signal>
    <receiver>NewRally</receiver>
    <slot>accept()</slot>
@@ -199,7 +225,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>createRally</sender>
    <signal>rejected()</signal>
    <receiver>NewRally</receiver>
    <slot>reject()</slot>

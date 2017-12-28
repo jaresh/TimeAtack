@@ -7,6 +7,7 @@
 #include <QFile>
 #include <QSqlQuery>
 #include <QVariant>
+#include <QDebug>
 #include <iostream>
 
 class DatabaseManager
@@ -22,7 +23,14 @@ class DatabaseManager
        /* Driver */
        static void addDriver(QString name);
        static void deleteDriver(QString name);
+       static QSqlQuery getDriverByName(QString name);
        static QSqlQuery getAllDrivers();
+
+       /* Stage */
+       static void addStage(QString name, int distance);
+       static void deleteStage(QString name);
+       static QSqlQuery getStageByName(QString name);
+       static QSqlQuery getAllStages();
 
    private:
        static QSqlDatabase db;

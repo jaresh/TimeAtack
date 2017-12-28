@@ -18,14 +18,17 @@ class NewRally : public QDialog
 public:
     explicit NewRally(QWidget *parent = 0);
     ~NewRally();
-    void addRally();
+    void updateDriverList();
+    void updateStageList();
+    int getStageDistance(QString name);
 
 private slots:
-    void on_pushButton_clicked();
+    void on_addStage_clicked();
+    void on_removeStage_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_addDriver_clicked();
 
-    void on_buttonBox_accepted();
+    void on_removeDriver_clicked();
 
 private:
     Ui::NewRally *ui;

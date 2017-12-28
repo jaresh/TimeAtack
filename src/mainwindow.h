@@ -17,11 +17,8 @@ public:
 
 private slots:
     void on_actionExit_triggered();
-
     void on_actionNew_triggered();
-
     void on_actionEdit_triggered();
-
     void on_actionEdit_2_triggered();
 
 private:

@@ -24,22 +24,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    databasemanager.cpp \
-    newdriver.cpp \
-    newrally.cpp \
-    newstage.cpp
+        src/main.cpp \
+        src/mainwindow.cpp \
+    src/databasemanager.cpp \
+    src/newrally.cpp \
+    src/editdriver.cpp \
+    src/editstage.cpp
 
 HEADERS += \
-        mainwindow.h \
-    databasemanager.h \
-    newdriver.h \
-    newrally.h \
-    newstage.h
+        src/mainwindow.h \
+    src/databasemanager.h \
+    src/newrally.h \
+    src/editdriver.h \
+    src/editstage.h
 
 FORMS += \
-        mainwindow.ui \
-    newdriver.ui \
-    newrally.ui \
-    newstage.ui
+        src/mainwindow.ui \
+    src/newrally.ui \
+    src/editstage.ui \
+    src/editdriver.ui

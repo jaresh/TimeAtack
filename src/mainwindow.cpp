@@ -2,8 +2,8 @@
 #include "ui_mainwindow.h"
 
 #include "newrally.h"
-#include "newstage.h"
-#include "newdriver.h"
+#include "editstage.h"
+#include "editdriver.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -31,14 +31,14 @@ void MainWindow::on_actionNew_triggered()
 
 void MainWindow::on_actionEdit_triggered()
 {
-    NewStage newstage;
-    newstage.setModal(true);
-    newstage.exec();
+    EditStage editstage;
+    editstage.setModal(true);
+    editstage.exec();
 }
 
 void MainWindow::on_actionEdit_2_triggered()
 {
-    NewDriver newdriver;
-    newdriver.setModal(true);
-    newdriver.exec();
+    EditDriver editdriver;
+    editdriver.setModal(true);
+    editdriver.exec();
 }
