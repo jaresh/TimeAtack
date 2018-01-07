@@ -22,14 +22,19 @@ public:
     void updateStageList();
     void updateCarList();
     int getStageDistance(QString name);
+    void addStage(const QString);
 
 private slots:
-    void on_addStage_clicked();
     void on_removeStage_clicked();
     void on_addDriver_clicked();
     void on_removeDriver_clicked();
     bool on_createRally_clicked();
     void on_close_clicked();
+    void on_addGravelStage_clicked();
+
+    void on_addTarmacStage_clicked();
+
+    void on_addSnowStage_clicked();
 
 private:
     Ui::NewRally *ui;

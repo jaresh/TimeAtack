@@ -1,5 +1,6 @@
 #include "listrally.h"
 #include "ui_listrally.h"
+#include "mainwindow.h"
 
 ListRally::ListRally(QWidget *parent) :
     QDialog(parent),

@@ -30,7 +30,8 @@ SOURCES += \
     src/newrally.cpp \
     src/editdriver.cpp \
     src/editstage.cpp \
-    src/listrally.cpp
+    src/listrally.cpp \
+    src/rally.cpp
 
 HEADERS += \
         src/mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     src/newrally.h \
     src/editdriver.h \
     src/editstage.h \
-    src/listrally.h
+    src/listrally.h \
+    src/rally.h
 
 FORMS += \
         src/mainwindow.ui \

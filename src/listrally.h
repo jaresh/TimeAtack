@@ -5,6 +5,7 @@
 #include <QMessageBox>
 
 #include "databasemanager.h"
+#include "rally.h"
 
 namespace Ui {
 class ListRally;

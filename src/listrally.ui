@@ -26,19 +26,6 @@
     <string>Rally list</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="loadRally">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>10</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Load</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="removeRally">
    <property name="geometry">
     <rect>

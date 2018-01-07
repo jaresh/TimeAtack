@@ -86,6 +86,43 @@ QSqlQuery DatabaseManager::getDriverByName(QString name)
     return query;
 }
 
+QString DatabaseManager::getDriverNameByID(int driverID)
+{
+    QSqlQuery query;
+    query.prepare("SELECT name FROM driver WHERE id=:driverID");
+    query.bindValue(":driverID", driverID);
+
+    if(!query.exec())
+    {
+        qDebug() << "getDriverNameByID" << db.lastError() << "\n";
+    }
+    else
+    {
+        query.next();
+        return query.value(0).toString();
+    }
+
+    return "";
+}
+
+QSqlQuery DatabaseManager::getAllDriversForRally(int rallyID)
+{
+    QSqlQuery query;
+    query.prepare("SELECT DISTINCT driver.name \
+                  FROM result INNER JOIN driver  \
+                  ON result.driver_id = driver.id  \
+                  WHERE result.rally_id=:rallyID");
+
+    query.bindValue(":rallyID", rallyID);
+
+    if(!query.exec())
+    {
+        qDebug() << "getDriverByName" << db.lastError() << "\n";
+    }
+
+    return query;
+}
+
 QSqlQuery DatabaseManager::getAllDrivers()
 {
     QSqlQuery query;
@@ -95,16 +132,18 @@ QSqlQuery DatabaseManager::getAllDrivers()
 }
 
 /* STAGE */
-void DatabaseManager::addStage(QString name, int distance)
+void DatabaseManager::addStage(QString name, double distance, QString surface)
 {
     QSqlQuery query;
     query.prepare("INSERT INTO stage (\
                    name, \
-                   distance) \
-                   VALUES (:name, :distance)");
+                   distance,\
+                   type) \
+                   VALUES (:name, :distance, :type)");
 
     query.bindValue(":name", name);
     query.bindValue(":distance", distance);
+    query.bindValue(":type", surface);
 
     if(!query.exec())
     {
@@ -138,6 +177,26 @@ QSqlQuery DatabaseManager::getStageByName(QString name)
     return query;
 }
 
+QString DatabaseManager::getStageNameByID(int stageID)
+{
+    QSqlQuery query;
+    query.prepare("SELECT name FROM stage WHERE id=:stageID");
+    query.bindValue(":stageID", stageID);
+
+    if(!query.exec())
+    {
+        qDebug() << "StageNameByID" << db.lastError() << "\n";
+    }
+    else
+    {
+        query.next();
+        QString name = query.value(0).toString();
+        return query.value(0).toString();
+    }
+
+    return "";
+}
+
 QSqlQuery DatabaseManager::getAllStages()
 {
     QSqlQuery query;
@@ -151,7 +210,7 @@ void DatabaseManager::addRally(QString name,
                                int carID,
                                int numberOfStages,
                                int numberOfDrivers,
-                               int distance,
+                               double distance,
                                std::map<int, int> driverID,
                                std::map<int, int> stageID)
 {
@@ -193,12 +252,16 @@ void DatabaseManager::addRally(QString name,
                                stage_id, \
                                driver_id, \
                                car_id, \
+                               time, \
+                               dnf, \
                                finished) \
                                VALUES (\
                                :rally_id, \
                                :stage_id, \
                                :driver_id, \
                                :car_id, \
+                               '00:00:00', \
+                               0, \
                                :finished)");
 
                 query.bindValue(":rally_id", rallyID);
@@ -233,8 +296,6 @@ void DatabaseManager::deleteRally(QString name)
     }
     else
     {
-        std::cout << "Rally id:" << rallyID << std::endl;
-
         query.prepare("DELETE FROM result WHERE rally_id=:id");
         query.bindValue(":id", rallyID);
 
@@ -267,6 +328,16 @@ QSqlQuery DatabaseManager::getAllRally()
     return query;
 }
 
+QSqlQuery DatabaseManager::getRallyResults(int rallyID)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM result where rally_id=:rallyID");
+    query.bindValue(":rallyID", rallyID);
+
+    query.exec();
+    return query;
+}
+
 /* CAR */
 QSqlQuery DatabaseManager::getCarByName(QString name)
 {
@@ -280,10 +351,38 @@ QSqlQuery DatabaseManager::getCarByName(QString name)
     return query;
 }
 
+QString DatabaseManager::getCarNameByID(int ID)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM car WHERE id=:id");
+    query.bindValue(":id", ID);
+
+    if(!query.exec())
+        qDebug() << "CarByID" << db.lastError() << "\n";
+    else
+    {
+        query.next();
+        return query.value(1).toString();
+    }
+
+    return "";
+}
+
 QSqlQuery DatabaseManager::getAllCars()
 {
     QSqlQuery query;
     query.prepare("SELECT * FROM car");
+    query.exec();
+    return query;
+}
+
+/* RESULT */
+QSqlQuery DatabaseManager::getResultByID(int resultID)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM result where id=:resultID");
+    query.bindValue(":resultID", resultID);
+
     query.exec();
     return query;
 }

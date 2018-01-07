@@ -30,7 +30,20 @@ void NewRally::updateStageList()
     QSqlQuery stages = DatabaseManager::getAllStages();
     while (stages.next())
     {
-        ui->stageBox->addItem(stages.value(1).toString());
+        QString type = stages.value(3).toString();
+
+        if(!type.compare("Gravel"))
+        {
+            ui->stageGravelBox->addItem(stages.value(1).toString());
+        }
+        else if(!type.compare("Tarmac"))
+        {
+            ui->stageTarmacBox->addItem(stages.value(1).toString());
+        }
+        else if(!type.compare("Snow"))
+        {
+            ui->stageSnowBox->addItem(stages.value(1).toString());
+        }
     }
 }
 
@@ -48,19 +61,18 @@ int NewRally::getStageDistance(QString name)
     QSqlQuery stage = DatabaseManager::getStageByName(name);
     while (stage.next())
     {
-        return stage.value(2).toInt();
+        return stage.value(2).toDouble();
     }
 
     return 0;
 }
 
-void NewRally::on_addStage_clicked()
+void NewRally::addStage(const QString name)
 {
-    const QString selected = ui->stageBox->currentText();
-    ui->stageList->addItem(selected);
+    ui->stageList->addItem(name);
 
-    int distanceOverall = ui->label_5->text().toInt() + getStageDistance(selected);
-    ui->label_5->setText(QString::number(distanceOverall));
+    double distanceOverall = ui->label_5->text().toDouble() + getStageDistance(name);
+    ui->label_5->setText(QString::number(distanceOverall, 'd', 1));
 }
 
 void NewRally::on_removeStage_clicked()
@@ -68,8 +80,8 @@ void NewRally::on_removeStage_clicked()
     QList<QListWidgetItem*> items = ui->stageList->selectedItems();
     foreach(QListWidgetItem * item, items)
     {
-        int distanceOverall = ui->label_5->text().toInt() - getStageDistance(item->text());
-        ui->label_5->setText(QString::number(distanceOverall));
+        int distanceOverall = ui->label_5->text().toDouble() - getStageDistance(item->text());
+        ui->label_5->setText(QString::number(distanceOverall, 'd', 1));
 
         delete ui->stageList->takeItem(ui->stageList->row(item));
     }
@@ -103,7 +115,7 @@ bool NewRally::on_createRally_clicked()
     int carID = 0;
     int numberOfStages = ui->stageList->count();
     int numberOfDrivers = ui->driverList->count();
-    int distanceOverall = ui->label_5->text().toInt();
+    double distanceOverall = ui->label_5->text().toDouble();
 
     QSqlQuery lookForRally = DatabaseManager::getRallyByName(rallyName);
     bool rallyExists = false;
@@ -166,4 +178,22 @@ bool NewRally::on_createRally_clicked()
 void NewRally::on_close_clicked()
 {
     close();
+}
+
+void NewRally::on_addGravelStage_clicked()
+{
+    const QString selected = ui->stageGravelBox->currentText();
+    addStage(selected);
+}
+
+void NewRally::on_addTarmacStage_clicked()
+{
+    const QString selected = ui->stageTarmacBox->currentText();
+    addStage(selected);
+}
+
+void NewRally::on_addSnowStage_clicked()
+{
+    const QString selected = ui->stageSnowBox->currentText();
+    addStage(selected);
 }

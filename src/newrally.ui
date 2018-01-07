@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>563</height>
+    <height>610</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,7 +43,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>340</y>
+     <y>390</y>
      <width>361</width>
      <height>121</height>
     </rect>
@@ -58,7 +58,7 @@
     <enum>QListView::ListMode</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="addStage">
+  <widget class="QPushButton" name="addGravelStage">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -68,10 +68,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Add stage</string>
+    <string>Add gravel</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="stageBox">
+  <widget class="QComboBox" name="stageGravelBox">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -85,7 +85,7 @@
    <property name="geometry">
     <rect>
      <x>280</x>
-     <y>470</y>
+     <y>520</y>
      <width>101</width>
      <height>23</height>
     </rect>
@@ -173,7 +173,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>470</y>
+     <y>520</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -186,13 +186,13 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>490</y>
+     <y>540</y>
      <width>47</width>
      <height>13</height>
     </rect>
    </property>
    <property name="text">
-    <string>0</string>
+    <string>0.0</string>
    </property>
   </widget>
   <widget class="QComboBox" name="carBox">
@@ -222,7 +222,7 @@
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>520</y>
+     <y>570</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -235,13 +235,59 @@
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>520</y>
+     <y>570</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
     <string>Close</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addTarmacStage">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>330</y>
+     <width>81</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add tarmac</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="stageTarmacBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>330</y>
+     <width>221</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addSnowStage">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>360</y>
+     <width>81</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add snow</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="stageSnowBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>360</y>
+     <width>221</width>
+     <height>22</height>
+    </rect>
    </property>
   </widget>
  </widget>

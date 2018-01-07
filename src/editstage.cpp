@@ -31,7 +31,7 @@ void EditStage::updateStageList()
 void EditStage::on_addStage_clicked()
 {
     QString stageName = ui->nameInput->text();
-    int distance = ui->spinInput->text().toInt();
+    double distance = ui->doubleSpinBox->value();
 
     QSqlQuery lookForStage = DatabaseManager::getStageByName(stageName);
     bool stageExists = false;
@@ -47,13 +47,15 @@ void EditStage::on_addStage_clicked()
     }
     else
     {
-        if(distance == 0)
+        if(distance == 0.0)
         {
             QMessageBox::information(0, QString("Information"), QString("Distance can't be zero."), QMessageBox::Ok);
         }
         else
         {
-            DatabaseManager::addStage(stageName, distance);
+            QString surface = ui->surfaceInput->currentText();
+
+            DatabaseManager::addStage(stageName, distance, surface);
             updateStageList();
         }
     }
